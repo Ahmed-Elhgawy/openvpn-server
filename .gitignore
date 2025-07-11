@@ -1,0 +1,5 @@
+# Igonre terraform files
+# Ignore all .tfvars files
+*.tfvars
+# Ignore all .terraform directories
+.terraform/
