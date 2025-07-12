@@ -56,7 +56,7 @@ terraform plan \
 
 ⚠️ Default allows SSH from any IP. For security, set `my_public_ip` to your machine's IP.
 
-###3. Initialize Terraform
+### 3. Initialize Terraform
 
 ```bash
 terraform init
