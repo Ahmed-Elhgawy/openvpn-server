@@ -36,15 +36,6 @@ Before you begin, make sure you have:
 
 ---
 
-## 📸 Screenshots
-
-| ✅ Successful Terraform Deployment | 🔗 OpenVPN Client Connected |
-| ---------------------------------- | ---------------------------- |
-| Shows the terminal output after deploying the infrastructure and installing OpenVPN. | Demonstrates a successful connection using the downloaded `client.ovpn` file. |
-| ![Terraform Deployment Output](images/screen2.png) | ![OpenVPN Client Connected](images/screen1.png) |
-
----
-
 ## 🔧 Setup and Usage
 
 ### 1. Clone the Repository
@@ -103,6 +94,30 @@ terraform destroy
 
 ---
 
+## ➕ Adding a New VPN Client
+
+You can add additional VPN clients at any time by SSH'ing into your EC2 instance and running the OpenVPN installer script again.
+
+### 🧩 Steps:
+
+```bash
+ssh ubuntu@<instance_public_ip>
+sudo ./openvpn-install.sh
+```
+
+1. Choose "Add a new client" (Option 1)
+2. Enter a name for the client (e.g., ahmed)
+3. The script will generate a new .ovpn configuration file for the new client
+4. Secure copy (SCP) the .ovpn file back to your local machine:
+
+```bash
+scp -i ~/.ssh/id_rsa ubuntu@<instance_public_ip>:<client_name>.ovpn ~/client_<client_name>.ovpn
+```
+
+### 💡 Example:
+
+![Add New Client](images/screen3.png)
+
 ## 🛠️ Customization
 
 You can modify `openvpn-install.sh` to preconfigure users, change ports, or apply advanced OpenVPN configurations. Make sure the file is executable and located in the project root.
@@ -121,6 +136,15 @@ You can modify `openvpn-install.sh` to preconfigure users, change ports, or appl
 
 After a successful deployment, Terraform will output:
 - `instance_public_ip`: The public IP of the OpenVPN server.
+
+---
+
+## 📸 Screenshots
+
+| ✅ Successful Terraform Deployment | 🔗 OpenVPN Client Connected |
+| ---------------------------------- | ---------------------------- |
+| Shows the terminal output after deploying the infrastructure and installing OpenVPN. | Demonstrates a successful connection using the downloaded `client.ovpn` file. |
+| ![Terraform Deployment Output](images/screen2.png) | ![OpenVPN Client Connected](images/screen1.png) |
 
 ---
 
